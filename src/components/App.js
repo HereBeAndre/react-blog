@@ -1,12 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PostList from "./PostList";
 
 const App = () => {
-  useEffect(() => {
-    //dispatch
-    console.log("Dispatch here");
-  }, []);
-
   return (
     <div className="ui container">
       <PostList />
