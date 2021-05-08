@@ -7,7 +7,7 @@ import UserHeader from "./UserHeader";
 const PostList = ({ posts, getPosts }) => {
   useEffect(() => {
     getPosts();
-  });
+  }, []);
   const renderList = () => {
     return posts.map((post) => {
       return (
@@ -17,6 +17,9 @@ const PostList = ({ posts, getPosts }) => {
             <div className="description">
               <h2>{post.title}</h2>
               <p>{post.body}</p>
+              <h3>
+                <UserHeader userId={post.userId} />
+              </h3>
             </div>
           </div>
         </div>
@@ -24,12 +27,7 @@ const PostList = ({ posts, getPosts }) => {
     });
   };
 
-  return (
-    <div className="ui relaxed divided list">
-      {renderList()}
-      <UserHeader />
-    </div>
-  );
+  return <div className="ui relaxed divided list">{renderList()}</div>;
 };
 
 const mapStateToProps = (state) => {
