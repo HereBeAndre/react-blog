@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUser } from "../actions";
 
-const UserHeader = ({ user, getUser }) => {
+const UserHeader = ({ getUser, user, userId }) => {
   useEffect(() => {
-    getUser(1);
+    getUser(userId);
   }, []);
   return <div>{user.name}</div>;
 };
