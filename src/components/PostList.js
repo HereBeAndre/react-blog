@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
 
+import UserHeader from "./UserHeader";
+
 const PostList = ({ posts, getPosts }) => {
   useEffect(() => {
     getPosts();
@@ -22,7 +24,12 @@ const PostList = ({ posts, getPosts }) => {
     });
   };
 
-  return <div className="ui relaxed divided list">{renderList()}</div>;
+  return (
+    <div className="ui relaxed divided list">
+      {renderList()}
+      <UserHeader />
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
