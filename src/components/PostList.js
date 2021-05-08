@@ -2,12 +2,32 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
 
-const PostList = ({ getPosts }) => {
+const PostList = ({ posts, getPosts }) => {
   useEffect(() => {
     getPosts();
-  }, []);
-  return <div>Post List</div>;
+  });
+  const renderList = () => {
+    return posts.map((post) => {
+      return (
+        <div className="item" key={post.id}>
+          <i className="large middle aligned icon user"></i>
+          <div className="content">
+            <div className="description">
+              <h2>{post.title}</h2>
+              <p>{post.body}</p>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+
+  return <div className="ui relaxed divided list">{renderList()}</div>;
+};
+
+const mapStateToProps = (state) => {
+  return { posts: state.posts };
 };
 
 // Connect action creator to PostList component (action creator is available via props)
-export default connect(null, { getPosts })(PostList);
+export default connect(mapStateToProps, { getPosts })(PostList);
