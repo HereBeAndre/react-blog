@@ -17,10 +17,8 @@ const PostList = ({ posts, getPosts }) => {
             <div className="description">
               <h2>{post.title}</h2>
               <p>{post.body}</p>
-              <h3>
-                <UserHeader userId={post.userId} />
-              </h3>
             </div>
+            <UserHeader userId={post.userId} />
           </div>
         </div>
       );
