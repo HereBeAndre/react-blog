@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUser } from "../actions";
 
-const UserHeader = ({ getUser, user, userId }) => {
+const UserHeader = ({ getUser, users, userId }) => {
+  console.log("USERS HERE", users);
   useEffect(() => {
     getUser(userId);
   }, []);
-  return <div>{user.name}</div>;
+
+  const user = users.find((u) => u.id === userId);
+
+  return <div className="header">{user && user.name}</div>;
 };
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  return { users: state.users };
 };
 
 export default connect(mapStateToProps, { getUser })(UserHeader);
