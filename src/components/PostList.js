@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getPosts } from "../actions";
+import { getPostsAndUsers } from "../actions";
 
 import UserHeader from "./UserHeader";
 
-const PostList = ({ posts, getPosts }) => {
+const PostList = ({ posts, getPostsAndUsers }) => {
   useEffect(() => {
-    getPosts();
+    getPostsAndUsers();
   }, []);
   const renderList = () => {
     return posts.map((post) => {
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
 };
 
 // Connect action creator to PostList component (action creator is available via props)
-export default connect(mapStateToProps, { getPosts })(PostList);
+export default connect(mapStateToProps, { getPostsAndUsers })(PostList);
