@@ -1,3 +1,4 @@
+import _ from "lodash";
 import jsonPlaceholder from "../api/jsonPlaceholder";
 
 // Thanks to middleware (i.e. redux-thunk) we can return both actions and objects
@@ -15,7 +16,10 @@ export const getPosts = () => async (dispatch) => {
 //   };
 // };
 
-export const getUser = (userId) => async (dispatch) => {
-  const res = await jsonPlaceholder.get(`/users/${userId}`);
+// Use lodash to fetch users just once per userId (_.memoize)
+export const getUser = (userId) => (dispatch) => _getUser(userId, dispatch);
+
+const _getUser = _.memoize(async (userId, dispatch) => {
+  const res = await jsonPlaceholder(`/users/${userId}`);
   dispatch({ type: "GET_USER", payload: res.data });
-};
+});
