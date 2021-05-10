@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-const UserHeader = ({ getPostsAndUsers, user, userId }) => {
+const UserHeader = ({ user }) => {
   return <div className="header">{user && user.name}</div>;
 };
 

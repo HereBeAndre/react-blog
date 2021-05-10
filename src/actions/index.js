@@ -34,8 +34,9 @@ export const getPostsAndUsers = () => async (dispatch, getState) => {
   await dispatch(getPosts());
 
   // Get posts of out state, map over array and take only userId properties, then pick unique ids only
-  const uniqueUserIds = _.uniq(_.map(getState().posts, "userId"));
-  uniqueUserIds.forEach((id) => {
-    dispatch(getUser(id));
-  });
+  _.chain(getState().posts)
+    .map("userId")
+    .uniq()
+    .forEach((id) => dispatch(getUser(id)))
+    .value(); // lodash way of saying "Execute" with _.chain
 };
